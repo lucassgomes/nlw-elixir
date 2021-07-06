@@ -1,0 +1,44 @@
+version: "3"
+
+networks:
+  wabanex-back:
+    driver: bridge
+
+volumes:
+  pgdata:
+  
+
+services:
+  wabanex:
+    image: wabanex-backend:latest
+    container_name: wabanex-backend
+    build: .
+    command: bash -c 'mix deps.get && mix phx.server'
+    networks:
+      - wabanex-back
+    ports:
+      - "${PORT}:4000"
+    volumes:
+      - ./:/app
+      - /app/deps
+      - /app/_build
+      - /app/.elixir_ls
+      - /app/assets/node_modules
+    depends_on:
+      - wabanex-database
+    env_file: .env
+
+  wabanex-database:
+    image: postgres:12.1
+    container_name: wabanex-database
+    ports:
+      - "${DB_PORT}:5432"
+    networks:
+      - wabanex-back
+    environment:
+      - "POSTGRES_DB=${DB_NAME}"
+      - "POSTGRES_USER=${DB_USER}"
+      - "POSTGRES_PASSWORD=${DB_PASSWORD}"
+    env_file: .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
