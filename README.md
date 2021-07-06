@@ -19,6 +19,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Elixix](https://elixir-lang.org/)
 - [Phoenix](https://phoenixframework.org/)
 - [GraphQL](https://graphql.org)
+- [Docker](https://docs.docker.com/)
 </div>
 
 <div id="project"></div>
@@ -40,11 +41,8 @@ Gerencie e acompanhe seus treinos na academia
 ## 🚀 Como executar
 
 - Clone o repositório
-- Instale o phoenix `mix archive.install hex phx_new 1.5.9`
-- Instale as dependencias do projeto `mix deps.get`
+- Caso precise você pode alterar as configurações do banco de dados pelo arquivo `dev.exs` e no arquivo `config/test.exs`
 - Instale a database e rode as migrations `mix ecto.setup`
-- Inicie o servidor do phoenix `mix phx.server`
-- Por fim, caso precise você pode alterar as configurações do banco de dados pelo arquivo `dev.exs` e no arquivo `config/test.exs`
 
 Por fim, a aplicação estará disponível em `http://localhost:4000`
 
